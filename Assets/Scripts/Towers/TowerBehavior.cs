@@ -13,7 +13,6 @@ public class TowerBehavior : MonoBehaviour
 
     void Update()
     {
-        print(Time.time + "/" +  bulletTimer);
         if(Time.time - bulletTimer > bulletCooldown)
         {
             Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
