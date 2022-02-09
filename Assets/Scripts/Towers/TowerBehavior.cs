@@ -4,6 +4,8 @@ public class TowerBehavior : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletCooldown;
+    [SerializeField] private float bulletHeight;
+   
     private float bulletTimer;
 
     private void Start()
@@ -15,7 +17,7 @@ public class TowerBehavior : MonoBehaviour
     {
         if(Time.time - bulletTimer > bulletCooldown)
         {
-            Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y + bulletHeight, transform.position.z), Quaternion.identity);
             bulletTimer = Time.time;
         }
     }
