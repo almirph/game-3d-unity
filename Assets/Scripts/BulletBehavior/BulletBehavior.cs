@@ -29,11 +29,20 @@ public class BulletBehavior : MonoBehaviour
 
     void Update()
     {
-        MoveToEnemy();
+        if (!closestEnemy)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            MoveToEnemy();
+
+        }
     }
 
     private void MoveToEnemy()
     {
+        
         Vector3 enemyPosition = closestEnemy.GetComponent<Transform>().position;
 
         //Move in X direction
@@ -70,7 +79,6 @@ public class BulletBehavior : MonoBehaviour
 
     GameObject GetClosestEnemy(GameObject[] enemies)
     {
-        print(enemies);
         GameObject bestTarget = null;
         float closestDistanceSqr = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
