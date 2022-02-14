@@ -2364,8 +2364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801a8d0e92eed644f9a3737ddbfe1fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 4230363275306795300, guid: 84159df1d61642041b757dc087874874, type: 3}
-  bulletCooldown: 0.5
+  bulletPrefab: {fileID: 1900756431413560, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
+  bulletCooldown: 1.5
   bulletHeight: 1
   turnSpeed: 1
 --- !u!114 &3269689317368626965

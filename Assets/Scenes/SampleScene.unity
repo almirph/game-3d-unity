@@ -214,7 +214,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -408,7 +408,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1732045279
 GameObject:
@@ -512,6 +512,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1628759292796446128, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
+      propertyPath: turnSpeed
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 1953271650171834, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
       propertyPath: m_Name
       value: Tower1
@@ -571,7 +575,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2438384162811338675, guid: fbb2f9e87805bb549838a19989212b56, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2438384162811338675, guid: fbb2f9e87805bb549838a19989212b56, type: 3}
       propertyPath: m_LocalPosition.x
@@ -615,7 +619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2438384162811338676, guid: fbb2f9e87805bb549838a19989212b56, type: 3}
       propertyPath: instanciateCooldown
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2438384162811338676, guid: fbb2f9e87805bb549838a19989212b56, type: 3}
       propertyPath: enemyStartPosition.x

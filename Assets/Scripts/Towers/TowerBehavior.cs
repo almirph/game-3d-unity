@@ -18,7 +18,7 @@ public class TowerBehavior : MonoBehaviour
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         GameObject closestEnemy = gameObject.GetComponent<EnemyHelper>().GetClosestEnemy(enemies);
-        if (Time.time - bulletTimer > bulletCooldown && enemies.Length > 0)
+        if (Time.time  - bulletTimer > bulletCooldown && closestEnemy)
         {
             //Turn Direction
             Vector3 targetDirection = closestEnemy.GetComponent<Transform>().position - transform.position;
@@ -28,6 +28,11 @@ public class TowerBehavior : MonoBehaviour
             Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y + bulletHeight, transform.position.z), Quaternion.identity);
             gameObject.GetComponent<Animator>().SetTrigger("attack");
             bulletTimer = Time.time;
+        }
+
+        else if(!closestEnemy)
+        {
+            transform.rotation = Quaternion.LookRotation(new Vector3(0,0,0));
         }
     }
 }
