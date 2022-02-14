@@ -3,6 +3,7 @@ using UnityEngine;
 public class BulletBehavior : MonoBehaviour
 {
     [SerializeField] private float bulletSpeed;
+    [SerializeField] private int bulletDamage;
     private GameObject closestEnemy; 
 
     void Start()
@@ -21,8 +22,9 @@ public class BulletBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider enemy)
     {
-        if(enemy.tag == "Enemy")
+        if(enemy.tag == "Enemy" && enemy == closestEnemy.GetComponent<Collider>())
         {
+            closestEnemy.GetComponent<Health>().TakeDamage(bulletDamage);
             Destroy(gameObject);
         }
     }

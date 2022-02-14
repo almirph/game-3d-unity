@@ -8,44 +8,59 @@ public class EnemiesController : MonoBehaviour
     [SerializeField] private Vector3 enemyStartPosition;
     [SerializeField] private Vector3[] movmentPoints;
     private List<GameObject> enemies = new List<GameObject>();
+    [SerializeField] private float instanciateCooldown;
+    private float instanciateTimer;
 
+    private void Start()
+    {
+        instanciateTimer = Time.time;
+    }
+    void Update()
+    {
+        if (Time.time - instanciateTimer > instanciateCooldown)
+        {
+            enemies.Add(Instantiate(enemyPrefab, enemyStartPosition, Quaternion.identity));
+            instanciateTimer = Time.time;
+        }
+        MoveEnemies();
+    }
     public List<GameObject> getEnemies()
     {
         return enemies;
     }
 
-    private void Start()
-    {
-        enemies.Add(Instantiate(enemyPrefab, enemyStartPosition, Quaternion.identity));
-    }
-    void Update()
-    {
-        MoveEnemies();
-    }
 
     void MoveEnemies()
     {
         List<GameObject> destroiedEnemies = new List<GameObject>();
         foreach (GameObject enemy in enemies)
         {
-            Vector3 nextPoint = movmentPoints[enemy.GetComponent<EnemyBehavior>().getPositionMovment()];
-            float xDiference = Mathf.Abs(enemy.transform.position.x - nextPoint.x);
-            float zDiference = Mathf.Abs(enemy.transform.position.z - nextPoint.z);
-
-            if (xDiference < 0.01f && zDiference < 0.01)
+            if (!enemy)
             {
-                setNextPoint(xDiference, zDiference, enemy, destroiedEnemies);
-            } 
-
-            if (xDiference > 0.01f)
-            {
-                enemy.transform.position = new Vector3(enemy.transform.position.x  + (enemy.GetComponent<EnemyBehavior>().getMovmentSpeed()) * Mathf.Sign(nextPoint.x - enemy.transform.position.x), enemy.transform.position.y, enemy.transform.position.z);
+                destroiedEnemies.Add(enemy);
             }
-
-            if (zDiference > 0.01f)
+            else
             {
-                enemy.transform.position = new Vector3(enemy.transform.position.x, enemy.transform.position.y, enemy.transform.position.z + (enemy.GetComponent<EnemyBehavior>().getMovmentSpeed()) * Mathf.Sign(nextPoint.z - enemy.transform.position.z));
+                Vector3 nextPoint = movmentPoints[enemy.GetComponent<EnemyBehavior>().getPositionMovment()];
+                float xDiference = Mathf.Abs(enemy.transform.position.x - nextPoint.x);
+                float zDiference = Mathf.Abs(enemy.transform.position.z - nextPoint.z);
+
+                if (xDiference < 0.01f && zDiference < 0.01)
+                {
+                    setNextPoint(xDiference, zDiference, enemy, destroiedEnemies);
+                } 
+
+                if (xDiference > 0.01f)
+                {
+                    enemy.transform.position = new Vector3(enemy.transform.position.x  + (enemy.GetComponent<EnemyBehavior>().getMovmentSpeed()) * Mathf.Sign(nextPoint.x - enemy.transform.position.x), enemy.transform.position.y, enemy.transform.position.z);
+                }
+
+                if (zDiference > 0.01f)
+                {
+                    enemy.transform.position = new Vector3(enemy.transform.position.x, enemy.transform.position.y, enemy.transform.position.z + (enemy.GetComponent<EnemyBehavior>().getMovmentSpeed()) * Mathf.Sign(nextPoint.z - enemy.transform.position.z));
+                }
             }
+            
 
         }
         removeFromEnemies(destroiedEnemies);
