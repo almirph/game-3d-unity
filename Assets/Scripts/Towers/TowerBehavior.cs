@@ -32,7 +32,7 @@ public class TowerBehavior : MonoBehaviour
 
         else if(!closestEnemy)
         {
-            transform.rotation = Quaternion.LookRotation(new Vector3(0,0,0));
+            transform.rotation = Quaternion.LookRotation(new Vector3(1,0,1));
         }
     }
 }
