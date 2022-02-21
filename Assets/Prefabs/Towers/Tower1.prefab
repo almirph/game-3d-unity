@@ -2367,7 +2367,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1900756431413560, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
   bulletCooldown: 1.5
   bulletHeight: 1
-  turnSpeed: 1
+  turnSpeed: 1000
 --- !u!114 &3269689317368626965
 MonoBehaviour:
   m_ObjectHideFlags: 0
