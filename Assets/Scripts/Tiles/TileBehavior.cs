@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -14,6 +12,7 @@ public class TileBehavior : MonoBehaviour
     {
         isSelected = false;
     }
+
     private void OnMouseUp()
     {
         if (!EventSystem.current.IsPointerOverGameObject())
@@ -24,15 +23,15 @@ public class TileBehavior : MonoBehaviour
                 tile.GetComponent<Renderer>().material.color = Color.white;
                 tile.GetComponent<TileBehavior>().isSelected = false;
             }
-            if(!menu)
-            {
-                menu = Instantiate(menuPrefab);
-            }
-        
+            if(menu)
+                Destroy(menu.gameObject);
+            
+            menu = Instantiate(menuPrefab);
+            menu.GetComponent<MenuBuyOptions>().createMage.selectedTile = this;
             isSelected = true;
             gameObject.GetComponent<Renderer>().material.color = Color.red;
         }
-        
+
     }
 
 }

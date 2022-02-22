@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+
     [SerializeField] private int health;
+    [SerializeField] private float pointsToAdd;
+    [SerializeField] private float coinsToAdd;
     private bool isDead { get; set; }
 
     private void Start()
@@ -18,6 +21,8 @@ public class Health : MonoBehaviour
         {
             isDead = true;
             Destroy(gameObject);
+            PointsEvent.current.PointsTrigger(pointsToAdd);
+            CoinsEvent.current.CoinsTrigger(coinsToAdd);
             return true;
         }
         else if (!isDead)

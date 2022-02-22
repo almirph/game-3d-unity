@@ -74,13 +74,14 @@ public class EnemiesController : MonoBehaviour
         }
     }
 
-    //Set array positon or destroy object
+    //Seta posição do array ou destroi objeto
     void setNextPoint(float xDiference, float zDiference, GameObject enemy, List<GameObject> destroiedEnemies)
     {
         
         if ( enemy.GetComponent<EnemyBehavior>().getPositionMovment() == movmentPoints.Length - 1)
         {
             destroiedEnemies.Add(enemy);
+            PlayerHealthEvent.current.PlayerHealthTrigger(-1);
             Destroy(enemy);
         }
 

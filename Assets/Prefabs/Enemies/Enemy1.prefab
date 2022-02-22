@@ -124,3 +124,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 6
+  pointsToAdd: 2
+  coinsToAdd: 10

@@ -2368,6 +2368,8 @@ MonoBehaviour:
   bulletCooldown: 1.5
   bulletHeight: 1
   turnSpeed: 1000
+  bulletRange: 5
+  price: 100
 --- !u!114 &3269689317368626965
 MonoBehaviour:
   m_ObjectHideFlags: 0

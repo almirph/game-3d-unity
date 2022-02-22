@@ -6,7 +6,7 @@ public class BulletBehavior : MonoBehaviour
     [SerializeField] private int bulletDamage;
     private GameObject closestEnemy; 
 
-    void Start()
+    void Awake()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         if (enemies.Length > 0)
@@ -15,7 +15,7 @@ public class BulletBehavior : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            closestEnemy = null;
         }
         
     }
@@ -38,7 +38,6 @@ public class BulletBehavior : MonoBehaviour
         else
         {
             MoveToEnemy();
-
         }
     }
 
