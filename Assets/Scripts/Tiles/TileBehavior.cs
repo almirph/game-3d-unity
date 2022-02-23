@@ -29,7 +29,7 @@ public class TileBehavior : MonoBehaviour
             menu = Instantiate(menuPrefab);
             menu.GetComponent<MenuBuyOptions>().createMage.selectedTile = this;
             isSelected = true;
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
+            gameObject.GetComponent<Renderer>().material.color = Color.blue;
         }
 
     }

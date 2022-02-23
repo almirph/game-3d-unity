@@ -15,7 +15,7 @@ public class Waves : MonoBehaviour
         return wavesSize;
     }
 
-    private void Start()
+    private void Awake()
     {
         //Primeira Wave
         waves.Add((timer, 5));
