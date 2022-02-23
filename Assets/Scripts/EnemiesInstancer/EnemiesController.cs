@@ -4,25 +4,59 @@ using UnityEngine;
 
 public class EnemiesController : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private Vector3 enemyStartPosition;
     [SerializeField] private Vector3[] movmentPoints;
     private List<GameObject> enemies = new List<GameObject>();
-    [SerializeField] private float instanciateCooldown;
     private float instanciateTimer;
+    private int wavePosition;
+    private List<(GameObject, float)> waves = new List<(GameObject, float)>();
+    private int wavesSize;
+    private GameObject actualTimer;
 
     private void Start()
     {
+        wavePosition = 0;
         instanciateTimer = Time.time;
+        waves = gameObject.GetComponent<Waves>().waves;
+        wavesSize = gameObject.GetComponent<Waves>().GetWavesSize();
+        print(wavesSize);
+
+        //First time treatment
+        TimerTreatment();
     }
     void Update()
     {
-        if (Time.time - instanciateTimer > instanciateCooldown)
+        if (wavePosition + 1 < wavesSize && Time.time - instanciateTimer > waves[wavePosition].Item2)
         {
-            enemies.Add(Instantiate(enemyPrefab, enemyStartPosition, Quaternion.identity));
+            wavePosition++;
             instanciateTimer = Time.time;
+            if (waves[wavePosition].Item1.tag == "Timer")
+            {
+                TimerTreatment();
+            }
+            else
+            {
+                if (actualTimer)
+                {
+                    Destroy(actualTimer.gameObject);
+                }
+                EnemyTreatment();
+            }
+
         }
         MoveEnemies();
+    }
+
+    private void TimerTreatment()
+    {
+        actualTimer = Instantiate(waves[wavePosition].Item1);
+        actualTimer.GetComponent<TimerController>().setTimer(waves[wavePosition].Item2);
+        actualTimer.GetComponent<TimerController>().StartCountdown();
+    }
+
+    private void EnemyTreatment()
+    {
+        enemies.Add(Instantiate(waves[wavePosition].Item1, enemyStartPosition, Quaternion.identity));
     }
     public List<GameObject> getEnemies()
     {
@@ -48,11 +82,11 @@ public class EnemiesController : MonoBehaviour
                 if (xDiference < 0.01f && zDiference < 0.01)
                 {
                     setNextPoint(xDiference, zDiference, enemy, destroiedEnemies);
-                } 
+                }
 
                 if (xDiference > 0.01f)
                 {
-                    enemy.transform.position = new Vector3(enemy.transform.position.x  + (enemy.GetComponent<EnemyBehavior>().getMovmentSpeed()) * Mathf.Sign(nextPoint.x - enemy.transform.position.x), enemy.transform.position.y, enemy.transform.position.z);
+                    enemy.transform.position = new Vector3(enemy.transform.position.x + (enemy.GetComponent<EnemyBehavior>().getMovmentSpeed()) * Mathf.Sign(nextPoint.x - enemy.transform.position.x), enemy.transform.position.y, enemy.transform.position.z);
                 }
 
                 if (zDiference > 0.01f)
@@ -60,7 +94,7 @@ public class EnemiesController : MonoBehaviour
                     enemy.transform.position = new Vector3(enemy.transform.position.x, enemy.transform.position.y, enemy.transform.position.z + (enemy.GetComponent<EnemyBehavior>().getMovmentSpeed()) * Mathf.Sign(nextPoint.z - enemy.transform.position.z));
                 }
             }
-            
+
 
         }
         removeFromEnemies(destroiedEnemies);
@@ -77,8 +111,8 @@ public class EnemiesController : MonoBehaviour
     //Seta posição do array ou destroi objeto
     void setNextPoint(float xDiference, float zDiference, GameObject enemy, List<GameObject> destroiedEnemies)
     {
-        
-        if ( enemy.GetComponent<EnemyBehavior>().getPositionMovment() == movmentPoints.Length - 1)
+
+        if (enemy.GetComponent<EnemyBehavior>().getPositionMovment() == movmentPoints.Length - 1)
         {
             destroiedEnemies.Add(enemy);
             PlayerHealthEvent.current.PlayerHealthTrigger(-1);
