@@ -25,7 +25,6 @@ public class EnemiesController : MonoBehaviour
     }
     void Update()
     {
-        print(wavesSize);
         if (wavePosition + 1 < wavesSize && Time.time - instanciateTimer > waves[wavePosition].Item2)
         {
             wavePosition++;
