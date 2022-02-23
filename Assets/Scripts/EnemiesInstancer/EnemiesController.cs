@@ -19,7 +19,6 @@ public class EnemiesController : MonoBehaviour
         instanciateTimer = Time.time;
         waves = gameObject.GetComponent<Waves>().waves;
         wavesSize = gameObject.GetComponent<Waves>().GetWavesSize();
-        print(wavesSize);
 
         //First time treatment
         TimerTreatment();
