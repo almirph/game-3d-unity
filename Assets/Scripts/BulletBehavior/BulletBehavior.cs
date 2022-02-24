@@ -4,7 +4,8 @@ public class BulletBehavior : MonoBehaviour
 {
     [SerializeField] private float bulletSpeed;
     [SerializeField] private int bulletDamage;
-    private GameObject closestEnemy; 
+    [SerializeField] private AudioClip bulletSound;
+    private GameObject closestEnemy;
 
     void Awake()
     {
@@ -24,6 +25,7 @@ public class BulletBehavior : MonoBehaviour
     {
         if(enemy.tag == "Enemy" && enemy == closestEnemy.GetComponent<Collider>())
         {
+            SoundEffect.current.PlayAudioClip(bulletSound);
             closestEnemy.GetComponent<Health>().TakeDamage(bulletDamage);
             Destroy(gameObject);
         }

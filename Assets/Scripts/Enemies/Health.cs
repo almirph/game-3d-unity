@@ -8,6 +8,11 @@ public class Health : MonoBehaviour
     [SerializeField] private int health;
     [SerializeField] private float pointsToAdd;
     [SerializeField] private float coinsToAdd;
+
+    public int GetHealth()
+    {
+        return health;
+    } 
     private bool isDead { get; set; }
 
     private void Start()

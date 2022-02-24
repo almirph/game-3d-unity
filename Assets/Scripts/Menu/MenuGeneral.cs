@@ -11,6 +11,7 @@ public class MenuGeneral : MonoBehaviour
     [SerializeField] private Text pointText;
     [SerializeField] private Text coinText;
     [SerializeField] private Text healthText;
+    [SerializeField] private AudioClip healthSound;
     void Awake()
     {
         points = 0;
@@ -45,7 +46,8 @@ public class MenuGeneral : MonoBehaviour
     {
         health += healthToAdd;
         healthText.text = "Health: " + health.ToString();
-        if(health <= 0)
+        SoundEffect.current.PlayAudioClip(healthSound);
+        if (health <= 0)
         {
             SceneManager.LoadScene(1);
         }

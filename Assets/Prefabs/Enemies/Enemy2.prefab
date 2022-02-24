@@ -9,11 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3887606398435381791, guid: dd78fbb50fc2b5a4eb36f9c99bc66a11, type: 3}
       propertyPath: health
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3887606398435381791, guid: dd78fbb50fc2b5a4eb36f9c99bc66a11, type: 3}
       propertyPath: coinsToAdd
-      value: 12
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 3887606398435381791, guid: dd78fbb50fc2b5a4eb36f9c99bc66a11, type: 3}
       propertyPath: pointsToAdd
