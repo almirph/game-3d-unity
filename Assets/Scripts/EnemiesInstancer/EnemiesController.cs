@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemiesController : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class EnemiesController : MonoBehaviour
     }
     void Update()
     {
+        if(wavePosition + 1 >= wavesSize)
+        {
+            SceneManager.LoadScene(3);
+        }
         if (wavePosition + 1 < wavesSize && Time.time - instanciateTimer > waves[wavePosition].Item2)
         {
             wavePosition++;

@@ -21,8 +21,8 @@ public class Waves : MonoBehaviour
     private void Awake()
     {
         //Primeira Wave
-        waves.Add((timer, 30));
-        AddRepeated(enemy1, 5, 10);
+        waves.Add((timer, 15));
+        AddRepeated(enemy1, 3, 10);
         waves.Add((enemy2, 3));
         AddRepeated(enemy1, 5, 3);
         waves.Add((enemy2, 3));
@@ -32,7 +32,7 @@ public class Waves : MonoBehaviour
         waves.Add((enemy2, 3));
 
         //Segunda Wave
-        waves.Add((timer, 30));
+        waves.Add((timer, 15));
         AddRepeated(enemy2, 5, 10);
         waves.Add((enemy3, 3));
         AddRepeated(enemy2, 5, 3);
@@ -43,7 +43,7 @@ public class Waves : MonoBehaviour
         waves.Add((enemy3, 3));
 
         //Terceira Wave
-        waves.Add((timer, 30));
+        waves.Add((timer, 15));
         AddRepeated(enemy3, 5, 10);
         waves.Add((enemy4, 3));
         AddRepeated(enemy3, 5, 3);
@@ -54,7 +54,7 @@ public class Waves : MonoBehaviour
         waves.Add((enemy4, 3));
 
         //Quarta Wave
-        waves.Add((timer, 30));
+        waves.Add((timer, 15));
         AddRepeated(enemy4, 5, 10);
         waves.Add((enemy5, 3));
         AddRepeated(enemy4, 5, 3);
@@ -65,7 +65,7 @@ public class Waves : MonoBehaviour
         waves.Add((enemy5, 3));
 
         //Quinta Wave
-        waves.Add((timer, 30));
+        waves.Add((timer, 15));
         AddRepeated(enemy5, 2, 30);
 
         wavesSize = waves.ToArray().Length;

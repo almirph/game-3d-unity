@@ -63,5 +63,9 @@ PrefabInstance:
       propertyPath: coinsToAdd
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 5204615213405139217, guid: 9427b8df8e3a4ac4e8b7941f023cc5ba, type: 3}
+      propertyPath: pointsToAdd
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9427b8df8e3a4ac4e8b7941f023cc5ba, type: 3}
