@@ -11,12 +11,13 @@ public class MenuGeneral : MonoBehaviour
     [SerializeField] private Text pointText;
     [SerializeField] private Text coinText;
     [SerializeField] private Text healthText;
-    void Start()
+    void Awake()
     {
         points = 0;
         pointText.text = "Points: " + points.ToString();
         healthText.text = "Health: " + health.ToString(); 
         coinText.text = "Coins: " + coins.ToString();
+        print("Points: " + points.ToString());
         PointsEvent.current.onPointsTrigger += OnPointsTrigger;
         CoinsEvent.current.onCoinsTrigger += OnCoinsTrigger;
         PlayerHealthEvent.current.onPlayerHealthTrigger += OnHealthTrigger;

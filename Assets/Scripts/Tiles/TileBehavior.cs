@@ -30,6 +30,7 @@ public class TileBehavior : MonoBehaviour
             //Select tile all units
             menu.GetComponent<MenuBuyOptions>().createMage.selectedTile = this;
             menu.GetComponent<MenuBuyOptions>().createMage2.selectedTile = this;
+            menu.GetComponent<MenuBuyOptions>().createMage3.selectedTile = this;
             isSelected = true;
             gameObject.GetComponent<Renderer>().material.color = Color.blue;
         }
